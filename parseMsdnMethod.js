@@ -1,6 +1,9 @@
 var xray = require('x-ray')
 var argv = require('minimist')(process.argv.slice(2))
 
+var IN_MARKER = '[in'
+var OUT_MARKER = '[out'
+
 xray(argv.url)
 	.prepare('functionSignatureFormat', function(str) {
 		if (str) {
@@ -12,7 +15,8 @@ xray(argv.url)
 	.select({
 		$root: 'div#mainSection',
 		functionSignature: 'pre | functionSignatureFormat',
-		parameters: ['h2:contains(Parameters) + dl > dt']
+		parameters: ['h2:contains(Parameters) + dl > dt'],
+		descriptions: ['h2:contains(Parameters) + dl > dd'],
 	})
 	.run(function(err, result) {
 		if (err) return console.error(err)
@@ -32,14 +36,16 @@ xray(argv.url)
 
 		for (var i = 0; i < result.parameters.length; i++) {
 			var parameter = result.parameters[i]
+			var description = result.descriptions[i] || ''			
 			var parameterName = parameter.substring(0, parameter.indexOf(' '))
 
-			if (parameter.indexOf('[in') > -1) {
+			if (parameter.indexOf(IN_MARKER) > -1 || description.indexOf(IN_MARKER) > -1) {
 				result.inParameters.push(parameterName)
-			} else if (parameter.indexOf('[out')) {
+			} else if (parameter.indexOf(OUT_MARKER) > -1 || description.indexOf(OUT_MARKER) > -1) {
 				result.outParameters.push(parameterName)
 			} else {
-				throw new Error('invalid parameter, neither in or out: ' + parameter)
+				console.error('warning: parameter %s is not marked as [in] or [out] assuming [in] in %s', parameterName, argv.url)
+				result.inParameters.push(parameterName)
 			}
 		}
 

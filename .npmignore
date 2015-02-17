@@ -18,7 +18,3 @@ coverage
 
 # rc config files
 .*rc
-
-# see https://github.com/substack/browserify-handbook#organizing-modules
-node_modules/*
-!node_modules/app

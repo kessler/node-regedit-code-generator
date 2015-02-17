@@ -7,6 +7,8 @@
     "test": "mocha -R spec"
   },
   "dependencies": {
+    "async": "^0.9.0",
+    "lodash": "^3.2.0",
     "minimist": "^1.1.0",
     "x-ray": "^1.0.3"
   },
