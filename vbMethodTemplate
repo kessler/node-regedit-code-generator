@@ -22,6 +22,6 @@
 		if (returnType) { 
 	%>
 
-	${functionName} = ""
+	${functionName} = 0
 	<% } %>
 End <% if (returnType) { %>Function<% } else { %>Sub<% } %>

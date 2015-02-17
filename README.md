@@ -20,3 +20,6 @@ buffers json piped into it, loads the template file specified by --template cl a
 ### vbMethodTemplate
 a vbscript method template
 
+## TODO
+what about return values in current vbscript template (how do they work with ExecuteMethod?)
+
