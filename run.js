@@ -31,8 +31,6 @@ run('node parseMsdnMethodUrls.js > urls.json')(function(err) {
 				console.error(results[z][1])
 		}
 	})
-
-
 })
 
 function run(cmd) {

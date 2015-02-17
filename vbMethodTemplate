@@ -2,19 +2,17 @@
 	Set Inparams = private_oRegSpecific.Methods_("${functionName}").Inparameters
 	<% 
 		for (var i = 0; i < inParameters.length; i++) {
-			var inParam = inParameters[i]
-			var capitalizedInParam = _.capitalize(inParam.toLowerCase())
+			var inParam = inParameters[i]			
 	%>
-	Inparams.${capitalizedInParam} = ${ inParam }
+	Inparams.${ inParam } = ${ inParam }
 	<%}%>	
 	set Outparams = private_oRegSpecific.ExecMethod_("${functionName}", Inparams,,private_oCtx)
 	<%
 		if (outParameters && outParameters.length  > 0) {				
 			for (var x = 0; x < outParameters.length; x++) {
 				var outParam = outParameters[x]				
-				var capitalizedOutParam = _.capitalize(outParam.toLowerCase())				
 	%>
-	${outParam} = Outparams.${capitalizedOutParam}
+	${outParam} = Outparams.${ outParam }
 	<%
 			}
 		}

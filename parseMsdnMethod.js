@@ -49,5 +49,16 @@ xray(argv.url)
 			}
 		}
 
+		// here comes the ifs. this is due to an error in msdn docs marked uValue as an in param when in fact its an out param
+		// I'll try to code this so if and when they fix it, it will go unnoticed...
+		if (result.functionName === 'GetQWORDValue' && result.outParameters.length === 0) {
+			var index = result.inParameters.indexOf('uValue')
+			// remove from in params and put where it belongs!
+			if (index > -1) {
+				result.inParameters.splice(index, 1)
+				result.outParameters.push('uValue')
+			}
+		}
+
 		console.log(JSON.stringify(result))
 	})
