@@ -1,0 +1,23 @@
+{
+  "name": "regedit-interface-generator",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "dependencies": {
+    "minimist": "^1.1.0",
+    "x-ray": "^1.0.3"
+  },
+  "author": "Yaniv Kessler",
+  "bugs": {
+    "url": "https://github.com/kessler/regedit-interface-generator/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kessler/regedit-interface-generator"
+  },
+  "homepage": "https://github.com/kessler/regedit-interface-generator",
+  "license": "MIT"
+}
