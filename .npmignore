@@ -18,3 +18,5 @@ coverage
 
 # rc config files
 .*rc
+
+urls.json
