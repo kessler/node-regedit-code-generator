@@ -1,5 +1,5 @@
 {
-  "name": "regedit-interface-generator",
+  "name": "regedit-code-generator",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -14,12 +14,12 @@
   },
   "author": "Yaniv Kessler",
   "bugs": {
-    "url": "https://github.com/kessler/regedit-interface-generator/issues"
+    "url": "https://github.com/kessler/node-regedit-code-generator/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kessler/regedit-interface-generator"
+    "url": "https://github.com/kessler/node-regedit-code-generator"
   },
-  "homepage": "https://github.com/kessler/regedit-interface-generator",
+  "homepage": "https://github.com/kessler/node-regedit-code-generator",
   "license": "MIT"
 }
