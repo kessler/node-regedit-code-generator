@@ -7,11 +7,9 @@
     "test": "mocha -R spec"
   },
   "dependencies": {
-    "async": "^0.9.0",
-    "lodash": "^3.2.0",
+    "@kessler/async-map-limit": "^1.0.0",
     "minimist": "^1.1.0",
-    "puppeteer": "^2.1.1",
-    "remote-css-select-stream": "^2.1.2"
+    "puppeteer": "^2.1.1"
   },
   "author": "Yaniv Kessler",
   "bugs": {

@@ -1,41 +1,26 @@
-var _ = require('lodash')
-var async = require('async')
-var child = require('child_process')
+const cp = require('child_process')
+const { promisify } = require('util')
+const exec = promisify(cp.exec)
+const map = require('@kessler/async-map-limit')
 
-run('node parseMsdnMethodUrls.js > urls.json')(function(err) {
-	if (err) {
-		console.error(err)
-		return process.exit(1)
-	}
+async function main() {
+	console.error('loading method urls from msdn')
+	const { stdout, stderr } = await exec('node parseMsdnMethodUrls.js')
 
-	var urls = require('./urls.json')
+	const urls = JSON.parse(stdout)
+	console.error(`found ${urls.length} methods`)
+	const result = await map(urls, executeOne, 2)
+	console.log(result.join('\n'))
+}
 
-	var commandTemplate = _.template('node parseMsdnMethod.js --url="${url}" | node renderTemplate.js --template=vbMethodTemplate')
+main()
 
-	var work = []
+function commandTemplate(url) {
+	return `node parseMsdnMethod.js --url="${url}" | node renderTemplate.js --template=vbMethodTemplate`
+}
 
-	for (var i = 0; i < urls.length; i++) {
-		var context = { url: urls[i] }
-		work.push(run(commandTemplate(context)))
-	}
-
-	async.parallel(work, function(err, results) {
-		if (err) {
-			console.error(err)
-			return process.exit(1)
-		}
-
-		for (var z = 0; z < results.length; z++) {
-			console.log(results[z][0])
-			if (results[z][1])
-				console.error(results[z][1])
-		}
-	})
-})
-
-function run(cmd) {
-	console.error(cmd)
-	return function (callback) {		
-		child.exec(cmd, callback)
-	}
+async function executeOne(url) {
+	const { stdout, stderr } = await exec(commandTemplate(url))
+	console.error(`done with ${url}`)
+	return stdout
 }
