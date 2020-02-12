@@ -24,5 +24,3 @@ node_modules
 # rc config files
 .*rc
 
-result.vbs
-urls.json
