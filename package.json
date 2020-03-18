@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@kessler/async-map-limit": "^1.0.0",
-    "minimist": "^1.1.0",
+    "minimist": "^1.2.2",
     "puppeteer": "^2.1.1"
   },
   "author": "Yaniv Kessler",
